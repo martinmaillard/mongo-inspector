@@ -27,9 +27,13 @@ key.child.grandchild... we'll see what we need
 * pypi
 
 """
+import os
+from collections import namedtuple
+
 import pymongo
 from bson.code import Code
-from collections import namedtuple
+
+__version__ = 0.1
 
 
 Attribute = namedtuple('Attribute', ['name', 'types'])
@@ -39,10 +43,10 @@ def extract_schema(db_name, host='localhost', port=27017):
     client = pymongo.MongoClient(host, port)
     db = client[db_name]
 
-    with open('js/map.js', 'r+') as map_file:
+    with open(relative('js/map.js'), 'r+') as map_file:
         map_fn = Code(map_file.read())
 
-    with open('js/reduce.js', 'r+') as reduce_file:
+    with open(relative('js/reduce.js'), 'r+') as reduce_file:
         reduce_fn = Code(reduce_file.read())
 
     collection_structures = {}
@@ -56,3 +60,7 @@ def extract_schema(db_name, host='localhost', port=27017):
         collection_structures[collection_name] = attributes
 
     return collection_structures
+
+
+def relative(path):
+    return os.path.join(os.path.dirname(__file__), path)

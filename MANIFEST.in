@@ -1,0 +1,1 @@
+include README.md LICENSE test_mongo_inspector.py requirements.txt mongo_inspector/js/*.js
