@@ -32,7 +32,7 @@ from bson.code import Code
 from collections import namedtuple
 
 
-Attribute = namedtuple('Attribute', ['name', 'type'])
+Attribute = namedtuple('Attribute', ['name', 'types'])
 
 
 def extract_schema(db_name, host='localhost', port=27017):
@@ -51,8 +51,8 @@ def extract_schema(db_name, host='localhost', port=27017):
         collection = db[collection_name]
 
         result = collection.inline_map_reduce(map_fn, reduce_fn)
-        attributes = [Attribute(val['_id'], val['value']) for val in result]
 
+        attributes = [Attribute(val['_id'], val['value']['types']) for val in result]
         collection_structures[collection_name] = attributes
 
     return collection_structures

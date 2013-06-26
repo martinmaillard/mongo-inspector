@@ -66,8 +66,10 @@ function map() {
                 base = parent === '' ? '' : parent + '.';
                 fullKey = parentType === 'Array' ? base + '__item__' : base + key;
 
+                // Emit an object because it needs to be the same type as
+                // reduce's output and reduce cannot output an array yet.
+                emit(fullKey, {types: [itemType]});
 
-            emit(fullKey, itemType);
                 if (inArray(itemType, ['Object', 'Array'])) {
                     recurse(fullKey, item, itemType);
                 }

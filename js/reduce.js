@@ -1,6 +1,18 @@
 
 function reduce(key, values) {
-    // Take the first one. If the same value has not always the same
-    // type... well that's a shame.
-    return values[0];
+
+    var unique = function (array) {
+        var index, item,
+            set = {};
+
+        for (index in array) {
+            item = array[index];
+            set[item] = null;
+        }
+
+        return Object.keys(set);
+    };
+
+    var types = values.map(function(v) { return v.types[0]; });
+    return {types: unique(types)};
 }
