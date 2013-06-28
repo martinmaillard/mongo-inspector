@@ -28,6 +28,6 @@ setup(
         'Natural Language :: English',
         'Topic :: Database',
         'Programming Language :: Python',
-        'License :: OSI Approved :: Apache Software license',
+        'License :: OSI Approved :: Apache Software License',
     ],
 )
