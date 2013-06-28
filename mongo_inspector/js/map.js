@@ -51,31 +51,31 @@ function map() {
         return typeStr;
     };
 
-    var recurse = function(parent, array, parentType) {
+    var recurse = function(doc, keyInParent, docType) {
         var key,
-            item,
+            subDoc,
+            subDocType,
             fullKey,
-            base,
-            itemType;
+            base;
 
-        for(key in array) {
-            if (array.hasOwnProperty(key)) {
-                item = array[key];
-                itemType = type(item);
+        for(key in doc) {
+            if (doc.hasOwnProperty(key)) {
+                subDoc = doc[key];
+                subDocType = type(subDoc);
 
-                base = parent === '' ? '' : parent + '.';
-                fullKey = parentType === 'Array' ? base + '__item__' : base + key;
+                base = keyInParent === '' ? '' : keyInParent + '.';
+                fullKey = docType === 'Array' ? base + '__item__' : base + key;
 
                 // Emit an object because it needs to be the same type as
                 // reduce's output and reduce cannot output an array yet.
-                emit(fullKey, {types: [itemType]});
+                emit(fullKey, {types: [subDocType]});
 
-                if (inArray(itemType, ['Object', 'Array'])) {
-                    recurse(fullKey, item, itemType);
+                if (inArray(subDocType, ['Object', 'Array'])) {
+                    recurse(subDoc, fullKey, subDocType);
                 }
             }
         }
     };
 
-    recurse('', this);
+    recurse(this, '', null);
 }
