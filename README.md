@@ -37,3 +37,8 @@ The returned schema looks like that:
 
 `Attribute(name, types)` is just a `nametuple`. Each attribute can have
 several types.
+
+## Future
+
+* It might be usefull to return a tree instead of 'point-separated'
+  nested keys.
