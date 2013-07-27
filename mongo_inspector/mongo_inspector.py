@@ -17,14 +17,9 @@ in the 'js' directory.
 
 
 TODO:
-* What happens with the js files when the library is installed in a
-virtualenv ?
-* We should probably build a tree of `Attribute`, not have names like
-key.child.grandchild... we'll see what we need
+* It might be usefull to build a tree of `Attribute` instead of our
+composed `key.child.grandchild` keys.
 
-* tests
-* setup.py
-* pypi
 
 """
 import os
@@ -32,8 +27,6 @@ from collections import namedtuple
 
 import pymongo
 from bson.code import Code
-
-__version__ = 0.1
 
 
 Attribute = namedtuple('Attribute', ['name', 'types'])
