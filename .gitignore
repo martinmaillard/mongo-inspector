@@ -1,6 +1,7 @@
 venv/*
 dist/*
 *.egg-info/*
+MANIFEST
 
 *.pyc
 
