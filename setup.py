@@ -1,25 +1,33 @@
 
+import os
+import re
+
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-import mongo_inspector
+
+PACKAGE_NAME = 'mongo_inspector'
+
+HERE = os.path.abspath(os.path.dirname(__file__))
+INIT = open(os.path.join(HERE, PACKAGE_NAME, '__init__.py')).read()
+VERSION = re.search("__version__ = '([^']+)'", INIT).group(1)
 
 
 setup(
     name='mongo-inspector',
-    version=mongo_inspector.__version__,
+    version=VERSION,
     author='Martin Maillard',
     author_email='self@martin-maillard.com',
     description='Schema extractor for MongoDB.',
     long_description=open('README.md').read(),
     keywords='mongodb',
     license=open('LICENSE').read(),
-    url='http://github.com/morphyn/mongo-inspector',
-    packages=['mongo_inspector'],
-    package_data={'': ['LICENSE'], 'mongo_inspector': ['js/*.js']},
-    package_dir={'mongo_inspector': 'mongo_inspector'},
+    url='http://github.com/martinmaillard/mongo-inspector',
+    packages=[PACKAGE_NAME],
+    package_data={'': ['LICENSE'], PACKAGE_NAME: ['js/*.js']},
+    package_dir={PACKAGE_NAME: PACKAGE_NAME},
     include_package_data=True,
     install_requires=['PyMongo'],
     classifiers=[
