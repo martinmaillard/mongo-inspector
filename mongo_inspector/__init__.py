@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from .mongo_inspector import *
+from .mongo_inspector import extract_schema, Attribute, __doc__
 
-__doc__ = mongo_inspector.__doc__
 
 __title__ = 'mongo_inspector'
 __version__ = 0.1
