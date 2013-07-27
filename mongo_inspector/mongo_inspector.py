@@ -12,14 +12,13 @@ representation of its "schema".
 Note: the mapped and reduced functions are javascript functions placed
 in the 'js' directory.
 
-:copyright: (c) 2013 by Martin Maillard.
-:license: MIT, see LICENSE for more details.
-
-
 TODO:
 * It might be usefull to build a tree of `Attribute` instead of our
 composed `key.child.grandchild` keys.
 
+
+:copyright: (c) 2013 by Martin Maillard.
+:license: Apache 2.0, see LICENSE for more details.
 
 """
 import os
